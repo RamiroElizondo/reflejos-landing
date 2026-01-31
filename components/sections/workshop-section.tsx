@@ -75,11 +75,11 @@ export function WorkshopSection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <span className="inline-block text-xs tracking-[0.3em] uppercase text-muted-foreground mb-4">
+          <span className="inline-block text-sm tracking-[0.3em] uppercase text-muted-foreground mb-4">
             Nuestro Espacio
           </span>
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-primary mb-4 text-balance">
-            Reflejos · Taller de Arte
+            Reflejos Artesanias · Taller de Arte
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto text-balance">
             Un espacio donde la creatividad fluye libremente y cada momento es una 
@@ -101,7 +101,7 @@ export function WorkshopSection() {
                 <feature.icon className="w-5 h-5 text-primary" />
               </div>
               <h3 className="font-serif text-xl text-foreground mb-2">{feature.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <p className="text-base text-muted-foreground leading-relaxed">
                 {feature.description}
               </p>
             </div>

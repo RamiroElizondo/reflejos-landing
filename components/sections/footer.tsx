@@ -4,7 +4,11 @@ import { Instagram, Facebook, MessageCircle } from "lucide-react"
 const socialLinks = [
   { icon: Instagram, href: "https://instagram.com/reflejosartesanias", label: "Instagram" },
   { icon: Facebook, href: "https://facebook.com/reflejosartesanias", label: "Facebook" },
-  { icon: MessageCircle, href: "https://wa.me/1234567890", label: "WhatsApp" },
+  {
+    icon: MessageCircle,
+    href: "https://wa.me/5492645042832?text=Hola%20%20Quisiera%20conocer%20más%20sobre%20sus%20obras%20y%20el%20taller%20de%20arte.%20Me%20interesa%20saber%20sobre%20horarios,%20talleres%20y%20las%20piezas%20disponibles.%20¡Gracias!",
+    label: "WhatsApp",
+  },
 ]
 
 const footerLinks = [
@@ -86,9 +90,9 @@ export function Footer() {
               Contacto
             </h4>
             <div className="space-y-3 text-sm text-primary-foreground/80">
-              <p>Calle del Arte 123</p>
-              <p>Ciudad Creativa</p>
-              <p>hola@reflejosartesanias.com</p>
+              <p>Gral. José María Paz Este 1472</p>
+              <p>San Juan, Argentina</p>
+              <p>reflejosartesanias@gmail.com</p>
             </div>
 
             {/* Alicia Carzzo signature */}
@@ -107,14 +111,14 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="mt-12 pt-6 border-t border-primary-foreground/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-primary-foreground/50">
           <p>© {new Date().getFullYear()} Reflejos Artesanías. Todos los derechos reservados.</p>
-          <p className="font-serif italic">El arte como reflejo del alma</p>
+          <p className="font-serif text-lg italic">El arte como reflejo del alma</p>
         </div>
       </div>
 
       {/* Large decorative text */}
       <div className="absolute bottom-0 left-0 right-0 overflow-hidden pointer-events-none">
         <p className="font-serif text-[12vw] leading-none text-primary-foreground/[0.03] text-center whitespace-nowrap translate-y-1/3">
-          Reflejos
+          Reflejos Artesanías
         </p>
       </div>
     </footer>

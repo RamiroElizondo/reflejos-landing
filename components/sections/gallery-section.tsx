@@ -3,14 +3,14 @@
 import { useEffect, useRef, useState } from "react"
 
 const artworks = [
-  { id: 1, title: "Reflejos del Atardecer", category: "Pintura" },
-  { id: 2, title: "Naturaleza Viva", category: "Artesanía" },
-  { id: 3, title: "Conexión", category: "Pintura" },
-  { id: 4, title: "Flores de Primavera", category: "Artesanía" },
-  { id: 5, title: "Serenidad", category: "Pintura" },
-  { id: 6, title: "Texturas del Alma", category: "Artesanía" },
-  { id: 7, title: "Armonía", category: "Pintura" },
-  { id: 8, title: "Detalles Únicos", category: "Artesanía" },
+  { id: 1, title: "Reflejos del Atardecer", category: "Pintura", image: "" },
+  { id: 2, title: "Naturaleza Viva", category: "Artesanía", image: "" },
+  { id: 3, title: "Conexión", category: "Pintura", image: "" },
+  { id: 4, title: "Flores de Primavera", category: "Artesanía", image: "" },
+  { id: 5, title: "Serenidad", category: "Pintura", image: "" },
+  { id: 6, title: "Texturas del Alma", category: "Artesanía", image: "" },
+  { id: 7, title: "Armonía", category: "Pintura", image: "" },
+  { id: 8, title: "Detalles Únicos", category: "Artesanía", image: "" },
 ]
 
 export function GallerySection() {
@@ -47,13 +47,13 @@ export function GallerySection() {
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           }`}
         >
-          <span className="inline-block text-xs tracking-[0.3em] uppercase text-muted-foreground mb-4">
+          <span className="inline-block text-sm tracking-[0.3em] uppercase text-muted-foreground mb-4">
             Galería
           </span>
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl text-primary mb-4 text-balance">
             Obras
           </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto text-balance">
+          <p className="text-base text-muted-foreground max-w-xl mx-auto text-balance">
             Cada pieza es un reflejo de inspiración, paciencia y amor por el arte hecho a mano.
           </p>
         </div>
@@ -73,8 +73,19 @@ export function GallerySection() {
                   index % 3 === 0 ? "aspect-[3/4] md:aspect-[3/5]" : "aspect-square"
                 }`}
               >
-                {/* Placeholder gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-dusty-blue/30 via-cream to-gold/30" />
+                {/* Image */}
+                {artwork.image && (
+                  <img
+                    src={artwork.image}
+                    alt={artwork.title}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                )}
+                
+                {/* Placeholder gradient - shown when no image */}
+                {!artwork.image && (
+                  <div className="absolute inset-0 bg-gradient-to-br from-dusty-blue/30 via-cream to-gold/30" />
+                )}
                 
                 {/* Subtle pattern overlay */}
                 <div className="absolute inset-0 opacity-10">
@@ -109,7 +120,7 @@ export function GallerySection() {
         >
           <div className="flex items-center gap-4">
             <div className="w-16 h-px bg-gradient-to-r from-transparent to-gold/50" />
-            <span className="font-serif italic text-muted-foreground">más obras próximamente</span>
+            <span className="font-serif italic text-muted-foreground text-lg md:text-xl">más obras próximamente</span>
             <div className="w-16 h-px bg-gradient-to-l from-transparent to-gold/50" />
           </div>
         </div>

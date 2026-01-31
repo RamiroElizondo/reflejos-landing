@@ -60,7 +60,7 @@ export function AboutSection() {
                 local de arte: es un refugio para quienes buscan lo auténtico, lo hecho a mano, 
                 lo irrepetible. Aquí, cada trazo, cada textura, cada color tiene un propósito.
               </p>
-              <p className="font-serif text-lg italic text-primary/80">
+              <p className="font-serif text-2xl italic text-primary/80">
                 {"\"Lo artesanal tiene el poder de conectar corazones.\""}
               </p>
             </div>
@@ -68,7 +68,7 @@ export function AboutSection() {
             {/* Decorative line */}
             <div className="mt-8 flex items-center gap-4">
               <div className="w-16 h-px bg-gradient-to-r from-gold to-transparent" />
-              <span className="text-xs tracking-widest text-muted-foreground uppercase">
+              <span className="text-sm tracking-widest text-muted-foreground uppercase">
                 Alicia Carzzo
               </span>
             </div>

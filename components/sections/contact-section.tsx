@@ -9,7 +9,8 @@ const contactMethods = [
     icon: MessageCircle,
     label: "WhatsApp",
     value: "Escríbenos",
-    href: "https://wa.me/1234567890",
+    copyValue: "+54 9 264 504 2832",
+    href: "https://wa.me/5492645042832?text=Hola%20%20Quisiera%20conocer%20más%20sobre%20sus%20obras%20y%20el%20taller%20de%20arte.%20Me%20interesa%20saber%20sobre%20horarios,%20talleres%20y%20las%20piezas%20disponibles.%20¡Gracias!",
     primary: true,
   },
   {
@@ -27,14 +28,22 @@ const contactMethods = [
   {
     icon: Mail,
     label: "Email",
-    value: "hola@reflejosartesanias.com",
-    href: "mailto:hola@reflejosartesanias.com",
+    value: "reflejosartesanias@gmail.com",
+    href: "mailto:reflejosartesanias@gmail.com",
   },
 ]
 
 export function ContactSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
+
+  const handleCopy = async (value: string) => {
+    try {
+      await navigator.clipboard.writeText(value)
+    } catch {
+      // Silently fail if clipboard is unavailable
+    }
+  }
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -131,6 +140,21 @@ export function ContactSection() {
                     {method.value}
                   </p>
                 </div>
+                <button
+                  type="button"
+                  onClick={(event) => {
+                    event.preventDefault()
+                    event.stopPropagation()
+                    void handleCopy(method.copyValue ?? method.value)
+                  }}
+                  className={`text-xs px-3 py-1 rounded-full border transition-colors ${
+                    method.primary
+                      ? "border-primary-foreground/30 text-primary-foreground/80 hover:bg-primary-foreground/10"
+                      : "border-border/60 text-muted-foreground hover:bg-muted"
+                  }`}
+                >
+                  Copiar
+                </button>
                 <svg
                   className={`w-5 h-5 transform group-hover:translate-x-1 transition-transform ${
                     method.primary ? "text-primary-foreground/50" : "text-muted-foreground"
@@ -157,39 +181,21 @@ export function ContactSection() {
             }`}
           >
             <div className="aspect-square md:aspect-video lg:aspect-square rounded-2xl overflow-hidden border border-border/50 bg-muted">
-              {/* Replace with actual map embed */}
-              <div className="w-full h-full flex flex-col items-center justify-center text-center p-6 bg-gradient-to-br from-dusty-blue/10 to-gold/10">
-                <div className="w-16 h-16 rounded-full bg-gold/20 flex items-center justify-center mb-4">
-                  <svg className="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                </div>
-                <p className="text-muted-foreground text-sm mb-4">
-                  Mapa interactivo
-                </p>
-                <Button
-                  asChild
-                  variant="outline"
-                  size="sm"
-                  className="rounded-full border-primary/30 text-primary hover:bg-primary/5 bg-transparent"
-                >
-                  <a
-                    href="https://maps.google.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Ver en Google Maps
-                  </a>
-                </Button>
-              </div>
+              <iframe
+                title="Mapa de ubicación"
+                src="https://www.google.com/maps?q=-31.5400208,-68.5054595&z=16&output=embed"
+                className="w-full h-full"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
             </div>
 
             {/* Address info */}
             <div className="mt-6 p-4 rounded-xl bg-card/50 border border-border/50">
               <p className="text-sm text-muted-foreground mb-1">Dirección</p>
               <p className="text-foreground">
-                Calle del Arte 123, Ciudad Creativa
+                Gral. José María Paz Este 1472, San Juan Argentina
               </p>
             </div>
           </div>
