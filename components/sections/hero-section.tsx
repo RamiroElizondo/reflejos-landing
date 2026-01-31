@@ -9,6 +9,8 @@ export function HeroSection() {
   const [brushProgress, setBrushProgress] = useState(0)
   const [animationPhase, setAnimationPhase] = useState<"painting" | "fading" | "complete">("painting")
   const animationRef = useRef<number | null>(null)
+  const lastProgressRef = useRef(-1)
+  const lastPhaseRef = useRef<"painting" | "fading" | "complete">("painting")
 
 
   useEffect(() => {
@@ -30,17 +32,37 @@ export function HeroSection() {
           const progress = Math.min(elapsed / paintDuration, 1)
           // Easing function for natural brush movement
           const easedProgress = 1 - Math.pow(1 - progress, 3)
-          setBrushProgress(easedProgress)
-          setAnimationPhase("painting")
+          const roundedProgress = Math.round(easedProgress * 60) / 60
+          if (roundedProgress !== lastProgressRef.current) {
+            lastProgressRef.current = roundedProgress
+            setBrushProgress(roundedProgress)
+          }
+          if (lastPhaseRef.current !== "painting") {
+            lastPhaseRef.current = "painting"
+            setAnimationPhase("painting")
+          }
         } else if (elapsed < paintDuration + fadeDuration) {
           // Fading phase
-          setBrushProgress(1)
-          setAnimationPhase("fading")
+          if (lastProgressRef.current !== 1) {
+            lastProgressRef.current = 1
+            setBrushProgress(1)
+          }
+          if (lastPhaseRef.current !== "fading") {
+            lastPhaseRef.current = "fading"
+            setAnimationPhase("fading")
+          }
         } else {
           // Complete - restart animation
-          setAnimationPhase("complete")
-          setBrushProgress(0)
+          if (lastPhaseRef.current !== "complete") {
+            lastPhaseRef.current = "complete"
+            setAnimationPhase("complete")
+          }
+          if (lastProgressRef.current !== 0) {
+            lastProgressRef.current = 0
+            setBrushProgress(0)
+          }
           setTimeout(() => {
+            lastPhaseRef.current = "painting"
             setAnimationPhase("painting")
             animationRef.current = requestAnimationFrame(function restartAnimate(time) {
               const newStartTime = time
@@ -49,14 +71,33 @@ export function HeroSection() {
                 if (elapsed < paintDuration) {
                   const progress = Math.min(elapsed / paintDuration, 1)
                   const easedProgress = 1 - Math.pow(1 - progress, 3)
-                  setBrushProgress(easedProgress)
-                  setAnimationPhase("painting")
+                  const roundedProgress = Math.round(easedProgress * 60) / 60
+                  if (roundedProgress !== lastProgressRef.current) {
+                    lastProgressRef.current = roundedProgress
+                    setBrushProgress(roundedProgress)
+                  }
+                  if (lastPhaseRef.current !== "painting") {
+                    lastPhaseRef.current = "painting"
+                    setAnimationPhase("painting")
+                  }
                 } else if (elapsed < paintDuration + fadeDuration) {
-                  setBrushProgress(1)
-                  setAnimationPhase("fading")
+                  if (lastProgressRef.current !== 1) {
+                    lastProgressRef.current = 1
+                    setBrushProgress(1)
+                  }
+                  if (lastPhaseRef.current !== "fading") {
+                    lastPhaseRef.current = "fading"
+                    setAnimationPhase("fading")
+                  }
                 } else {
-                  setAnimationPhase("complete")
-                  setBrushProgress(0)
+                  if (lastPhaseRef.current !== "complete") {
+                    lastPhaseRef.current = "complete"
+                    setAnimationPhase("complete")
+                  }
+                  if (lastProgressRef.current !== 0) {
+                    lastProgressRef.current = 0
+                    setBrushProgress(0)
+                  }
                   setTimeout(() => {
                     animationRef.current = requestAnimationFrame(restartAnimate)
                   }, 2000)
