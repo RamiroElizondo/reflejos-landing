@@ -3,14 +3,14 @@
 import { useEffect, useRef, useState } from "react"
 
 const artworks = [
-  { id: 1, title: "Reflejos del Atardecer", category: "Pintura", image: "" },
-  { id: 2, title: "Naturaleza Viva", category: "Artesanía", image: "" },
-  { id: 3, title: "Conexión", category: "Pintura", image: "" },
-  { id: 4, title: "Flores de Primavera", category: "Artesanía", image: "" },
-  { id: 5, title: "Serenidad", category: "Pintura", image: "" },
-  { id: 6, title: "Texturas del Alma", category: "Artesanía", image: "" },
-  { id: 7, title: "Armonía", category: "Pintura", image: "" },
-  { id: 8, title: "Detalles Únicos", category: "Artesanía", image: "" },
+  { id: 1, title: "Elegancia Oculta", category: "Pintura", image: "/images/cuadros/cuadromujer.png" },
+  { id: 2, title: "Papá Noel Decorativo", category: "Artesanía", image: "/images/cuadros/papanoel.jpeg" },
+  { id: 3, title: "Flor del Desierto", category: "Pintura", image: "/images/cuadros/captus.png" },
+  { id: 4, title: "Refugio de Amor", category: "Artesanía", image: "/images/cuadros/pesebre.jpeg" },
+  { id: 5, title: "Vínculo", category: "Pintura", image: "/images/cuadros/elefante.png" },
+  { id: 6, title: "Virgen María", category: "Pintura", image: "/images/cuadros/virgen.png" },
+  { id: 7, title: "Antes del Beso", category: "Pintura", image: "/images/cuadros/beso.png" },
+  { id: 8, title: "Jardín Alegre", category: "Artesanía", image: "/images/cuadros/maceta.jpeg" },
 ]
 
 export function GallerySection() {

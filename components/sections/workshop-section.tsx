@@ -27,12 +27,12 @@ const features = [
 ]
 
 const galleryImages = [
-  { id: 1, placeholder: "Proceso creativo 1" },
-  { id: 2, placeholder: "Proceso creativo 2" },
-  { id: 3, placeholder: "Proceso creativo 3" },
-  { id: 4, placeholder: "Proceso creativo 4" },
-  { id: 5, placeholder: "Proceso creativo 5" },
-  { id: 6, placeholder: "Proceso creativo 6" },
+  { id: 1, placeholder: "Proceso creativo 1", image: "/images/proceso/proceso1.jpeg" },
+  { id: 2, placeholder: "Proceso creativo 2", image: "/images/proceso/proceso2.jpeg" },
+  { id: 3, placeholder: "Proceso creativo 3", image: "/images/proceso/proceso3.jpeg" },
+  { id: 4, placeholder: "Proceso creativo 4", image: "/images/proceso/proceso4.jpeg" },
+  { id: 5, placeholder: "Proceso creativo 5", image: "/images/proceso/proceso5.jpeg" },
+  { id: 6, placeholder: "Proceso creativo 6", image: "/images/proceso/proceso6.jpeg" },
 ]
 
 export function WorkshopSection() {
@@ -124,12 +124,23 @@ export function WorkshopSection() {
                 className="group relative aspect-square bg-muted rounded-xl overflow-hidden cursor-pointer"
                 style={{ transitionDelay: `${index * 50}ms` }}
               >
+                {/* Image */}
+                {image.image && (
+                  <img
+                    src={image.image}
+                    alt={image.placeholder}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                )}
+                
                 {/* Placeholder for actual images */}
-                <div className="absolute inset-0 bg-gradient-to-br from-dusty-blue/20 to-gold/20 flex items-center justify-center">
-                  <span className="text-xs text-muted-foreground text-center px-4">
-                    {image.placeholder}
-                  </span>
-                </div>
+                {!image.image && (
+                  <div className="absolute inset-0 bg-gradient-to-br from-dusty-blue/20 to-gold/20 flex items-center justify-center">
+                    <span className="text-xs text-muted-foreground text-center px-4">
+                      {image.placeholder}
+                    </span>
+                  </div>
+                )}
                 
                 {/* Hover overlay */}
                 <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-all duration-300" />
